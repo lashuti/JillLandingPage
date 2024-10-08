@@ -9,6 +9,35 @@
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700|Playfair+Display:700" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/style.css">
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+	<script type="text/javascript">
+		(function(){
+			emailjs.init("9kDUWO0MECrVID1Sx");
+		})();
+	
+		function sendEmail() {
+			const email = document.getElementById('emailInput').value;
+			
+			if (email) {
+				emailjs.send("service_dq382e7","template_82aehlk", {
+					email: email,
+					from_name: "JILL - AI Agile Companion",
+					to_name: email.split('@')[0]
+				})
+				.then(function(response) {
+					alert('Email sent successfully!');
+				}, function(error) {
+					alert('Failed to send email. Please try again.');
+					console.log(error);
+				});
+			} else {
+				alert('Email input is required.');
+			}
+		}
+	</script>
+	
 </head>
 <body class="is-boxed has-animations">
     <div class="body-wrap boxed-container">
@@ -46,7 +75,7 @@
 						<div class="hero-copy">
 	                        <h1 class="hero-title mt-0">JILL - Your AI Agile Companion</h1>
 	                        <p class="hero-paragraph">Participates in the Agile process by analyzing meetings and automatically creating tickets, assigning them to the right people to streamline workflow and boost efficiency.</p>
-	                        <div class="hero-cta"><a class="button button-primary button-shadow" href="#get-in-touch">Early access</a></div>
+	                        <div class="hero-cta"><a class="button button-primary button-shadow" href="#get-in-touch">Try it out for free</a></div>
 						</div>
 						<div class="hero-app">
 							<div class="hero-app-illustration">
@@ -263,14 +292,14 @@
                     <div class="newsletter-inner section-inner">
 						<div class="newsletter-header text-center">
 							<h2 class="section-title mt-0">Get in touch</h2>
-							<p class="section-paragraph">Reach us at JillAI@gmail.com <br>or<br>Enter your email and we'll get in touch</p>
+							<p class="section-paragraph">Reach us at JillAICompanion@gmail.com <br>or<br>Enter your email and we'll get in touch</p>
 						</div>
                         <div class="footer-form newsletter-form field field-grouped">
                             <div class="control control-expanded">
-                                <input class="input" type="email" name="email" placeholder="Your email&hellip;">
+                                <input id="emailInput" class="input" type="email" name="email" placeholder="Your email&hellip;">
                             </div>
                             <div class="control">
-                                <a class="button button-primary button-block button-shadow" href="#">Early access</a>
+                                <a class="button button-primary button-block button-shadow" href="#" onclick="sendEmail()">Get Early access</a>
                             </div>
                         </div>
                     </div>
